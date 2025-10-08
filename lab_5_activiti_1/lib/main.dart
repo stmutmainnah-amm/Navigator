@@ -7,30 +7,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Navigation Lab',
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         '/': (context) => HomeScreen(),
         '/details': (context) => DetailsScreen(),
+        '/login': (context) => LoginScreen(),
       },
     );
   }
 }
 
-class FirstScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('First Screen')),
+      appBar: AppBar(title: Text('Login Screen')),
       body: Center(
         child: ElevatedButton(
-          child: Text('Go to Second Screen'),
           onPressed: () {
-            Navigator.pushNamed(
-              context,
-              '/details',
-              arguments: 'Data from Home Screen',
-            );
+            Navigator.pushReplacementNamed(context, '/');
           },
+          child: Text('Login and Go Home'),
         ),
       ),
     );
@@ -48,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             Navigator.pushNamed(
               context,
               '/details',
-              arguments: 'Data from Home Screen',
+              arguments: 'Halo dari Home Screen!',
             );
           },
           child: Text('Open Details'),
