@@ -45,7 +45,11 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/details');
+            Navigator.pushNamed(
+              context,
+              '/details',
+              arguments: 'Data from Home Screen',
+            );
           },
           child: Text('Open Details'),
         ),
@@ -57,14 +61,21 @@ class HomeScreen extends StatelessWidget {
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as String?;
+
     return Scaffold(
       appBar: AppBar(title: Text('Details Screen')),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Back to Home'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(args ?? 'No data received'),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Back to Home'),
+            ),
+          ],
         ),
       ),
     );
